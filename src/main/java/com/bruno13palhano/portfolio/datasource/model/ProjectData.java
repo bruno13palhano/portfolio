@@ -3,7 +3,7 @@ package com.bruno13palhano.portfolio.datasource.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Project {
+public class ProjectData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
