@@ -1,11 +1,11 @@
-package com.bruno13palhano.portfolio.datasource.repository;
+package com.bruno13palhano.repository;
 
-import com.bruno13palhano.portfolio.datasource.model.Project;
+import com.bruno13palhano.model.ProjectData;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface ProjectRepository extends CrudRepository<Project, Integer> {
+public interface ProjectDAO extends CrudRepository<ProjectData, Integer> {
     @Query(value = "SELECT * FROM project p WHERE p.id = :id", nativeQuery = true)
-    Project findProjectById(@Param("id") Integer id);
+    ProjectData findProjectById(@Param("id") Integer id);
 }

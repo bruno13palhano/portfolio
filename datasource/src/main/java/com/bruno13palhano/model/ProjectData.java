@@ -1,10 +1,9 @@
-package com.bruno13palhano.portfolio.datasource.model;
+package com.bruno13palhano.model;
 
 import jakarta.persistence.*;
 
 @Entity
 public class ProjectData {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
