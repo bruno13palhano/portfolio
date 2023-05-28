@@ -1,10 +1,13 @@
 package com.bruno13palhano.portfolio.controllers;
 
 import com.bruno13palhano.Project;
+import com.bruno13palhano.Technologies;
 import com.bruno13palhano.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/project")
@@ -16,7 +19,7 @@ public class ProjectController {
     @PostMapping(path = "/add")
     public @ResponseBody String addNewProject(
         @RequestParam String name,
-        @RequestParam String type,
+        @RequestParam List<Technologies> type,
         @RequestParam String description
     ) {
         Project project = new Project();
