@@ -7,16 +7,18 @@ public class Project {
     private String name;
     private List<Technologies> type;
     private String description;
+    private List<String> imagesUrls;
 
     public Project() {
 
     }
 
-    public Project (Integer id, String name, List<Technologies> type, String description) {
+    public Project (Integer id, String name, List<Technologies> type, String description, List<String> imagesUrls) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.description = description;
+        this.imagesUrls = imagesUrls;
     }
 
     public Integer getId() {
@@ -49,5 +51,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getImagesUrls() {
+        return imagesUrls;
+    }
+
+    public void setImagesUrls(List<String> imagesUrls) {
+        this.imagesUrls = imagesUrls;
     }
 }

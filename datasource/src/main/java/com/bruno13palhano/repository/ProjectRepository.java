@@ -47,7 +47,8 @@ public class ProjectRepository implements CommonRepository<Project> {
                 projectData.getId(),
                 projectData.getName(),
                 projectData.getType(),
-                projectData.getDescription()
+                projectData.getDescription(),
+                projectData.getImagesUrls()
             );
     }
 
@@ -56,7 +57,8 @@ public class ProjectRepository implements CommonRepository<Project> {
                 project.getId(),
                 project.getName(),
                 project.getType(),
-                project.getDescription()
+                project.getDescription(),
+                project.getImagesUrls()
             );
     }
 }

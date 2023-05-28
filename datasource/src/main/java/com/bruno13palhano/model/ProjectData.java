@@ -20,15 +20,19 @@ public class ProjectData {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "images_urls")
+    private List<String> imagesUrls;
+
     public ProjectData() {
 
     }
 
-    public ProjectData(Integer id, String name, List<Technologies> type, String description) {
+    public ProjectData(Integer id, String name, List<Technologies> type, String description, List<String> imagesUrls) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.description = description;
+        this.imagesUrls = imagesUrls;
     }
 
     public void setId(Integer id) {
@@ -61,5 +65,13 @@ public class ProjectData {
 
     public String getDescription() {
         return description;
+    }
+
+    public List<String> getImagesUrls() {
+        return imagesUrls;
+    }
+
+    public void setImagesUrls(List<String> imagesUrls) {
+        this.imagesUrls = imagesUrls;
     }
 }
