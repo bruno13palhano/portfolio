@@ -4,12 +4,19 @@ import com.bruno13palhano.Project;
 import com.bruno13palhano.Technologies;
 import com.bruno13palhano.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(path = "/project")
 public class ProjectController {
 
@@ -17,7 +24,7 @@ public class ProjectController {
     private ProjectRepository projectRepository;
 
     @PostMapping(path = "/add")
-    public @ResponseBody String addNewProject(
+    public String addNewProject(
         @RequestParam String name,
         @RequestParam List<Technologies> type,
         @RequestParam String description
@@ -32,12 +39,24 @@ public class ProjectController {
     }
 
     @GetMapping(path = "/all")
-    public @ResponseBody Iterable<Project> getAllProjects() {
+    public Iterable<Project> getAllProjects() {
         return projectRepository.getAll();
     }
 
     @GetMapping(path = "/{id}")
-    public @ResponseBody Project getProjectById(@PathVariable Integer id) {
+    public Project getProjectById(@PathVariable Integer id) {
         return projectRepository.getById(id);
+    }
+
+    @GetMapping(value = "/image", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<Resource> getProjectImage(@RequestParam String name, @RequestParam Integer id) throws IOException {
+        ByteArrayResource inputStream = new ByteArrayResource(Files.readAllBytes(Paths.get(
+                     "src/main/resources/assets/images/projects/"+name+"_"+id+".png"
+        )));
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .contentLength(inputStream.contentLength())
+                .body(inputStream);
     }
 }
