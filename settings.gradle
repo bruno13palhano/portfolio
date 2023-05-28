@@ -1,2 +1,4 @@
 rootProject.name = 'portfolio'
 include 'datasource'
+include 'model'
+
