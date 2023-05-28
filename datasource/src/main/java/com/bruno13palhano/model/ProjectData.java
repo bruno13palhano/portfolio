@@ -1,6 +1,9 @@
 package com.bruno13palhano.model;
 
+import com.bruno13palhano.Technologies;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class ProjectData {
@@ -12,7 +15,7 @@ public class ProjectData {
     private String name;
 
     @Column(name = "type")
-    private String type;
+    private List<Technologies> type;
 
     @Column(name = "description")
     private String description;
@@ -21,7 +24,7 @@ public class ProjectData {
 
     }
 
-    public ProjectData(Integer id, String name, String type, String description) {
+    public ProjectData(Integer id, String name, List<Technologies> type, String description) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -44,11 +47,11 @@ public class ProjectData {
         return name;
     }
 
-    public void setType(String type) {
+    public void setType(List<Technologies> type) {
         this.type = type;
     }
 
-    public String getType() {
+    public List<Technologies> getType() {
         return type;
     }
 

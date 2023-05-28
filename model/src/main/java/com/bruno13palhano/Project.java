@@ -1,16 +1,18 @@
 package com.bruno13palhano;
 
+import java.util.List;
+
 public class Project {
     private Integer id;
     private String name;
-    private String type;
+    private List<Technologies> type;
     private String description;
 
     public Project() {
 
     }
 
-    public Project (Integer id, String name, String type, String description) {
+    public Project (Integer id, String name, List<Technologies> type, String description) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -33,11 +35,11 @@ public class Project {
         this.name = name;
     }
 
-    public String getType() {
+    public List<Technologies> getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(List<Technologies> type) {
         this.type = type;
     }
 
