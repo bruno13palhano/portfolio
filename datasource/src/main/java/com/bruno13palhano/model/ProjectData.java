@@ -17,6 +17,17 @@ public class ProjectData {
     @Column(name = "description")
     private String description;
 
+    public ProjectData() {
+
+    }
+
+    public ProjectData(Integer id, String name, String type, String description) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.description = description;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
