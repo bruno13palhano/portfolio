@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/project")
+@CrossOrigin
 public class ProjectController {
 
     @Autowired
@@ -27,12 +28,14 @@ public class ProjectController {
     public String addNewProject(
         @RequestParam String name,
         @RequestParam List<Technologies> type,
-        @RequestParam String description
+        @RequestParam String description,
+        @RequestParam List<String> imagesUrls
     ) {
         Project project = new Project();
         project.setName(name);
         project.setType(type);
         project.setDescription(description);
+        project.setImagesUrls(imagesUrls);
         projectRepository.insert(project);
 
         return "Saved";
@@ -43,7 +46,7 @@ public class ProjectController {
         return projectRepository.getAll();
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "{id}")
     public Project getProjectById(@PathVariable Integer id) {
         return projectRepository.getById(id);
     }
