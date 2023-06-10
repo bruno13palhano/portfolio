@@ -26,6 +26,11 @@ public class ProjectRepository implements CommonRepository<Project> {
     }
 
     @Override
+    public void deleteById(Integer id) {
+        projectDAO.deleteById(id);
+    }
+
+    @Override
     public void update(Project model) {
         projectDAO.updateProject(projectAsProjectData(model));
     }
