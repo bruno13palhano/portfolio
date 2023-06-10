@@ -3,6 +3,7 @@ package com.bruno13palhano;
 public enum Technologies {
     ANDROID,
     ANGULAR,
+    COMPOSE,
     CSS,
     HTML,
     HILT,
