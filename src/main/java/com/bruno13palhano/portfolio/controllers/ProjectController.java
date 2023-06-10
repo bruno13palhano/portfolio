@@ -70,6 +70,11 @@ public class ProjectController {
         return "Updated";
     }
 
+    @GetMapping(path = "/delete/{id}")
+    public void deleteProjectById(@PathVariable Integer id) {
+        projectRepository.deleteById(id);
+    }
+
     @GetMapping(value = "/image", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<Resource> getProjectImage(@RequestParam String name, @RequestParam Integer id) throws IOException {
         ByteArrayResource inputStream = new ByteArrayResource(Files.readAllBytes(Paths.get(
