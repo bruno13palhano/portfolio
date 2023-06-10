@@ -51,6 +51,25 @@ public class ProjectController {
         return projectRepository.getById(id);
     }
 
+    @PutMapping(path = "/update")
+    public String updateProject(
+        @RequestParam Integer id,
+        @RequestParam String name,
+        @RequestParam List<Technologies> type,
+        @RequestParam String description,
+        @RequestParam List<String> imageUrls
+    ) {
+        Project project = new Project();
+        project.setId(id);
+        project.setName(name);
+        project.setType(type);
+        project.setDescription(description);
+        project.setImagesUrls(imageUrls);
+        projectRepository.update(project);
+
+        return "Updated";
+    }
+
     @GetMapping(value = "/image", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<Resource> getProjectImage(@RequestParam String name, @RequestParam Integer id) throws IOException {
         ByteArrayResource inputStream = new ByteArrayResource(Files.readAllBytes(Paths.get(
