@@ -1,10 +1,9 @@
-package com.bruno13palhano.repository;
+package com.bruno13palhano;
 
 import java.util.List;
 
-public interface CommonRepository<T> {
+public interface Repository<T> {
     void insert(T model);
-    void delete(T model);
     void deleteById(Integer id);
     void update(T model);
     List<T> getAll();
