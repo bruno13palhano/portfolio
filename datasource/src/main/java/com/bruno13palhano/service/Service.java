@@ -1,8 +1,8 @@
-package com.bruno13palhano.repository;
+package com.bruno13palhano.service;
 
 import java.util.List;
 
-public interface Repository<T> {
+public interface Service<T> {
     void insert(T model);
     void deleteById(Integer id);
     void update(T model);

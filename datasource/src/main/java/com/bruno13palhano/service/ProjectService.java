@@ -1,14 +1,5 @@
-package com.bruno13palhano.repository;
+package com.bruno13palhano.service;
 
 import com.bruno13palhano.Project;
 
-import java.util.List;
-
-public interface ProductRepository extends Repository<Project> {
-    void insert(T model);
-    void delete(T model);
-    void deleteById(Integer id);
-    void update(T model);
-    List<T> getAll();
-    T getById(Integer id);
-}
+public interface ProjectService extends Service<Project> {}
