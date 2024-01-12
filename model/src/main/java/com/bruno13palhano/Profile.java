@@ -8,20 +8,20 @@ public class Profile {
     private String description;
     private String email;
     private String cellphoneNumber;
-    private List<String> socialMedias;
+    private List<String> socialMedia;
 
     public Profile() {
 
     }
 
     public Profile(Integer id, String name, String description, String email, String cellphoneNumber,
-                   List<String> socialMedias) {
+                   List<String> socialMedia) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.email = email;
         this.cellphoneNumber = cellphoneNumber;
-        this.socialMedias = socialMedias;
+        this.socialMedia = socialMedia;
     }
 
     public Integer getId() {
@@ -64,11 +64,11 @@ public class Profile {
         this.cellphoneNumber = cellphoneNumber;
     }
 
-    public List<String> getSocialMedias() {
-        return socialMedias;
+    public List<String> getSocialMedia() {
+        return socialMedia;
     }
 
-    public void setSocialMedias(List<String> socialMedias) {
-        this.socialMedias = socialMedias;
+    public void setSocialMedia(List<String> socialMedia) {
+        this.socialMedia = socialMedia;
     }
 }
