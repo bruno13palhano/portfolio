@@ -1,8 +1,7 @@
 package com.bruno13palhano.portfolio.controllers;
 
 import com.bruno13palhano.Project;
-import com.bruno13palhano.Technologies;
-import com.bruno13palhano.repository.ProjectRepository;
+import com.bruno13palhano.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -17,62 +16,48 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/project")
+@RequestMapping(path = "/projects")
 @CrossOrigin
 public class ProjectController {
 
     @Autowired
-    private ProjectRepository projectRepository;
+    private ProjectService projectService;
 
-    @PostMapping(path = "/add")
-    public String addNewProject(
-        @RequestParam String name,
-        @RequestParam List<Technologies> type,
-        @RequestParam String description,
-        @RequestParam List<String> imagesUrls
-    ) {
-        Project project = new Project();
-        project.setName(name);
-        project.setType(type);
-        project.setDescription(description);
-        project.setImagesUrls(imagesUrls);
-        projectRepository.insert(project);
+    @PostMapping(path = "/insert")
+    public ResponseEntity<?> insert(@RequestBody Project project) {
+        projectService.insert(project);
 
-        return "Saved";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping(path = "/all")
-    public Iterable<Project> getAllProjects() {
-        return projectRepository.getAll();
+    public ResponseEntity<List<Project>> getAllProjects() {
+        return ResponseEntity.ok().body(projectService.getAll());
     }
 
     @GetMapping(path = "{id}")
-    public Project getProjectById(@PathVariable Integer id) {
-        return projectRepository.getById(id);
+    public ResponseEntity<Project> getProjectById(@PathVariable Integer id) {
+        Project project = projectService.getById(id);
+
+        if (project == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(project, HttpStatus.OK);
+        }
     }
 
     @PutMapping(path = "/update")
-    public String updateProject(
-        @RequestParam Integer id,
-        @RequestParam String name,
-        @RequestParam List<Technologies> type,
-        @RequestParam String description,
-        @RequestParam List<String> imageUrls
-    ) {
-        Project project = new Project();
-        project.setId(id);
-        project.setName(name);
-        project.setType(type);
-        project.setDescription(description);
-        project.setImagesUrls(imageUrls);
-        projectRepository.update(project);
+    public ResponseEntity<?> update(@RequestBody Project project) {
+        projectService.update(project);
 
-        return "Updated";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping(path = "/delete/{id}")
-    public void deleteProjectById(@PathVariable Integer id) {
-        projectRepository.deleteById(id);
+    public ResponseEntity<Integer> delete(@PathVariable Integer id) {
+        projectService.deleteById(id);
+
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
     @GetMapping(value = "/image", produces = MediaType.IMAGE_PNG_VALUE)
