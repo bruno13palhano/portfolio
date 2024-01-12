@@ -5,7 +5,7 @@ import java.util.List;
 public class Project {
     private Integer id;
     private String name;
-    private List<Technologies> type;
+    private List<String> type;
     private String description;
     private List<String> imagesUrls;
 
@@ -13,7 +13,7 @@ public class Project {
 
     }
 
-    public Project (Integer id, String name, List<Technologies> type, String description, List<String> imagesUrls) {
+    public Project (Integer id, String name, List<String> type, String description, List<String> imagesUrls) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -37,11 +37,11 @@ public class Project {
         this.name = name;
     }
 
-    public List<Technologies> getType() {
+    public List<String> getType() {
         return type;
     }
 
-    public void setType(List<Technologies> type) {
+    public void setType(List<String> type) {
         this.type = type;
     }
 
