@@ -33,10 +33,6 @@ public class ProfileController {
     public ResponseEntity<Profile> getById(@PathVariable Integer id) {
         Profile profile = profileService.getById(id);
 
-        if (profile == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else {
-            return new ResponseEntity<>(profile, HttpStatus.OK);
-        }
+        return new ResponseEntity<>(profile, HttpStatus.OK);
     }
 }
