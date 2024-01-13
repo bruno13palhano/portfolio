@@ -39,11 +39,7 @@ public class ProjectController {
     public ResponseEntity<Project> getProjectById(@PathVariable Integer id) {
         Project project = projectService.getById(id);
 
-        if (project == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else {
-            return new ResponseEntity<>(project, HttpStatus.OK);
-        }
+        return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
     @PutMapping(path = "/update")
