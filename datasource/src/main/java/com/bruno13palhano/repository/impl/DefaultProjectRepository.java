@@ -102,7 +102,7 @@ public class DefaultProjectRepository implements ProjectRepository {
     @Override
     public Project getById(Integer id) {
         String QUERY = "SELECT * FROM users WHERE id = ?";
-        Project result = null;
+        Project result = new Project();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
