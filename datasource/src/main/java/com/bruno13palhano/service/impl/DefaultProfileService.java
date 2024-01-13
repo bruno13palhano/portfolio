@@ -3,9 +3,11 @@ package com.bruno13palhano.service.impl;
 import com.bruno13palhano.Profile;
 import com.bruno13palhano.repository.ProfileRepository;
 import com.bruno13palhano.service.ProfileService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DefaultProfileService implements ProfileService {
     private final ProfileRepository profileRepository;
 

@@ -3,6 +3,7 @@ package com.bruno13palhano.repository.impl;
 import com.bruno13palhano.Profile;
 import com.bruno13palhano.Utils;
 import com.bruno13palhano.repository.ProfileRepository;
+import org.springframework.context.annotation.Configuration;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Configuration
 public class DefaultProfileRepository implements ProfileRepository {
     private final Connection connection;
 
