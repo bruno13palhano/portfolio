@@ -16,3 +16,13 @@ CREATE TABLE IF NOT EXISTS profile (
     social_media TEXT,
     PRIMARY KEY (id)
 )
+
+CREATE TABLE IF NOT EXISTS users (
+    id int NOT NULL AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL,
+    enabled TINYINT(4) NOT NULL DEFAULT 1,
+    PRIMARY KEY (id)
+);
