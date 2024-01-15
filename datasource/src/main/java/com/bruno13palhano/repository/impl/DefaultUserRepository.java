@@ -8,8 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 public class DefaultUserRepository implements UserRepository {
@@ -37,7 +35,7 @@ public class DefaultUserRepository implements UserRepository {
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void delete(Integer id) {
         String DELETE = "DELETE FROM users WHERE id = ?";
 
         try {
@@ -67,26 +65,90 @@ public class DefaultUserRepository implements UserRepository {
     }
 
     @Override
-    public List<User> getAll() {
-        String QUERY_ALL = "SELECT * FROM users";
-        List<User> result = new ArrayList<>();
+    public User getByUsername(String username) {
+        String USERNAME_QUERY = "SELECT * FROM users WHERE username = ?";
+        User result = new User();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
+            PreparedStatement preparedStatement = connection.prepareStatement(USERNAME_QUERY);
+            preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                result.add(
-                        new User(
-                                resultSet.getInt("id"),
-                                resultSet.getString("username"),
-                                resultSet.getString("password"),
-                                resultSet.getString("email"),
-                                resultSet.getString("role"),
-                                resultSet.getBoolean("enabled")
-                        )
-                );
-            }
+            resultSet.next();
+            result = new User(
+                    resultSet.getInt("id"),
+                    resultSet.getString("username"),
+                    resultSet.getString("password"),
+                    resultSet.getString("email"),
+                    resultSet.getString("role"),
+                    resultSet.getBoolean("enabled")
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    @Override
+    public Boolean usernameAlreadyExist(String username) {
+        String USERNAME_QUERY = "SELECT username FROM users WHERE username = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(USERNAME_QUERY);
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+
+            return resultSet.getString("username").equals(username);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
+    public Boolean emailAlreadyExist(String email) {
+        String EMAIL_QUERY = "SELECT email FROM users WHERE email = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(EMAIL_QUERY);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+
+            return resultSet.getString("email").equals(email);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        String EMAIL_QUERY = "SELECT * FROM users WHERE email = ?";
+        User result = new User();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(EMAIL_QUERY);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+            result = new User(
+                    resultSet.getInt("id"),
+                    resultSet.getString("username"),
+                    resultSet.getString("password"),
+                    resultSet.getString("email"),
+                    resultSet.getString("role"),
+                    resultSet.getBoolean("enabled")
+            );
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -101,6 +163,7 @@ public class DefaultUserRepository implements UserRepository {
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             resultSet.next();
