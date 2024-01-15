@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS profile (
     cellphone_number VARCHAR(55),
     social_media TEXT,
     PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE IF NOT EXISTS users (
     id int NOT NULL AUTO_INCREMENT,
