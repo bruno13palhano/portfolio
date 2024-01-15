@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/profile")
+@RequestMapping(path = "/profiles")
 @CrossOrigin
 public class ProfileController {
 
@@ -29,7 +29,7 @@ public class ProfileController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "profile/{id}")
     public ResponseEntity<Profile> getById(@PathVariable Integer id) {
         Profile profile = profileService.getById(id);
 
