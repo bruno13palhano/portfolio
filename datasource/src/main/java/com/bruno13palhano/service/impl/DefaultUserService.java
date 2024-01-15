@@ -5,8 +5,6 @@ import com.bruno13palhano.repository.UserRepository;
 import com.bruno13palhano.service.UserService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class DefaultUserService implements UserService {
     private final UserRepository userRepository;
@@ -15,28 +13,44 @@ public class DefaultUserService implements UserService {
         this.userRepository = userRepository;
     }
 
+
     @Override
-    public void insert(User model) {
-        userRepository.insert(model);
+    public void insert(User user) {
+        userRepository.insert(user);
     }
 
     @Override
-    public void deleteById(Integer id) {
-        userRepository.deleteById(id);
+    public void update(User user) {
+        userRepository.update(user);
     }
 
     @Override
-    public void update(User model) {
-        userRepository.update(model);
+    public void delete(Integer userId) {
+        userRepository.delete(userId);
     }
 
     @Override
-    public List<User> getAll() {
-        return userRepository.getAll();
+    public User getByUsername(String username) {
+        return userRepository.getByUsername(username);
     }
 
     @Override
-    public User getById(Integer id) {
-        return userRepository.getById(id);
+    public Boolean usernameAlreadyExist(String username) {
+        return userRepository.usernameAlreadyExist(username);
+    }
+
+    @Override
+    public Boolean emailAlreadyExist(String email) {
+        return userRepository.emailAlreadyExist(email);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        return userRepository.getByEmail(email);
+    }
+
+    @Override
+    public User getById(Integer userId) {
+        return userRepository.getById(userId);
     }
 }
