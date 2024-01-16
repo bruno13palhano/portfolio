@@ -35,7 +35,7 @@ public class ProjectController {
         return ResponseEntity.ok().body(projectService.getAll());
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/project/{id}")
     public ResponseEntity<Project> getProjectById(@PathVariable Integer id) {
         Project project = projectService.getById(id);
 
