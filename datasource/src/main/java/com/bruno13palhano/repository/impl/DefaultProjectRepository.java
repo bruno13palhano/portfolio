@@ -87,7 +87,7 @@ public class DefaultProjectRepository implements ProjectRepository {
                             resultSet.getString("name"),
                             Utils.stringToList(resultSet.getString("type")),
                             resultSet.getString("description"),
-                            Utils.stringToList(resultSet.getString("images_url"))
+                            Utils.stringToList(resultSet.getString("images_urls"))
                     )
                 );
             }
