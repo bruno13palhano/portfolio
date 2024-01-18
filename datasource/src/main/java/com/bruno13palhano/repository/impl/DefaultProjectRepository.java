@@ -101,7 +101,7 @@ public class DefaultProjectRepository implements ProjectRepository {
 
     @Override
     public Project getById(Integer id) {
-        String QUERY = "SELECT * FROM users WHERE id = ?";
+        String QUERY = "SELECT * FROM projects WHERE id = ?";
         Project result = new Project();
 
         try {
