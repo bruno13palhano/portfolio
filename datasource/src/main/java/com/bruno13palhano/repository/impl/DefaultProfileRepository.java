@@ -22,16 +22,17 @@ public class DefaultProfileRepository implements ProfileRepository {
 
     @Override
     public void insert(Profile model) {
-        String INSERT = "INSERT INTO profile (name,description,email,cellphone_number,social_media) " +
-                "VALUES (?,?,?,?,?)";
+        String INSERT = "INSERT INTO profile (name,image_url,description,email,cellphone_number,social_media) " +
+                "VALUES (?,?,?,?,?,?)";
 
         try {
             String socialMedia = String.join(", ", model.getSocialMedia());
 
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT);
             preparedStatement.setString(1, model.getName());
-            preparedStatement.setString(2, model.getDescription());
-            preparedStatement.setString(3, model.getEmail());
+            preparedStatement.setString(2, model.getImageUrl());
+            preparedStatement.setString(3, model.getDescription());
+            preparedStatement.setString(4, model.getEmail());
             preparedStatement.setString(5, model.getCellphoneNumber());
             preparedStatement.setString(6, socialMedia);
             preparedStatement.executeUpdate();
@@ -55,19 +56,20 @@ public class DefaultProfileRepository implements ProfileRepository {
 
     @Override
     public void update(Profile model) {
-        String UPDATE = "UPDATE profile SET name = ?, description = ?, email = ?, cellphone_number, social_media = ? " +
-                "WHERE id = ?";
+        String UPDATE = "UPDATE profile SET name = ?, image_url = ?, description = ?, email = ?, cellphone_number, " +
+                "social_media = ? WHERE id = ?";
 
         try {
             String socialMedia = String.join(", ", model.getSocialMedia());
 
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
             preparedStatement.setString(1, model.getName());
-            preparedStatement.setString(2, model.getDescription());
-            preparedStatement.setString(3, model.getEmail());
-            preparedStatement.setString(4, model.getCellphoneNumber());
-            preparedStatement.setString(5, socialMedia);
-            preparedStatement.setInt(6, model.getId());
+            preparedStatement.setString(2, model.getImageUrl());
+            preparedStatement.setString(3, model.getDescription());
+            preparedStatement.setString(4, model.getEmail());
+            preparedStatement.setString(5, model.getCellphoneNumber());
+            preparedStatement.setString(6, socialMedia);
+            preparedStatement.setInt(7, model.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,6 +90,7 @@ public class DefaultProfileRepository implements ProfileRepository {
                         new Profile(
                                 resultSet.getInt("id"),
                                 resultSet.getString("name"),
+                                resultSet.getString("image_url"),
                                 resultSet.getString("description"),
                                 resultSet.getString("email"),
                                 resultSet.getString("cellphone_number"),
@@ -116,6 +119,7 @@ public class DefaultProfileRepository implements ProfileRepository {
             result = new Profile(
                     resultSet.getInt("id"),
                     resultSet.getString("name"),
+                    resultSet.getString("image_url"),
                     resultSet.getString("description"),
                     resultSet.getString("email"),
                     resultSet.getString("cellphone_number"),
