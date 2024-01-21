@@ -55,7 +55,7 @@ public class DefaultProfileRepository implements ProfileRepository {
 
     @Override
     public void update(Profile model) {
-        String UPDATE = "UPDATE portfolio SET name = ?, description = ?, email = ?, cellphone_number, social_media = ? " +
+        String UPDATE = "UPDATE profile SET name = ?, description = ?, email = ?, cellphone_number, social_media = ? " +
                 "WHERE id = ?";
 
         try {
@@ -104,15 +104,16 @@ public class DefaultProfileRepository implements ProfileRepository {
 
     @Override
     public Profile getById(Integer id) {
-        String QUERY_ALL = "SELECT * FROM profile";
+        String QUERY = "SELECT * FROM profile WHERE id = ?";
         Profile result = new Profile();
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(QUERY_ALL);
+            PreparedStatement preparedStatement = connection.prepareStatement(QUERY);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             resultSet.next();
-            new Profile(
+            result = new Profile(
                     resultSet.getInt("id"),
                     resultSet.getString("name"),
                     resultSet.getString("description"),
