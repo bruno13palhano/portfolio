@@ -5,6 +5,7 @@ import java.util.List;
 public class Profile {
     private Integer id;
     private String name;
+    private String imageUrl;
     private String description;
     private String email;
     private String cellphoneNumber;
@@ -14,10 +15,11 @@ public class Profile {
 
     }
 
-    public Profile(Integer id, String name, String description, String email, String cellphoneNumber,
+    public Profile(Integer id, String name, String imageUrl, String description, String email, String cellphoneNumber,
                    List<String> socialMedia) {
         this.id = id;
         this.name = name;
+        this.imageUrl = imageUrl;
         this.description = description;
         this.email = email;
         this.cellphoneNumber = cellphoneNumber;
@@ -38,6 +40,14 @@ public class Profile {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getDescription() {
