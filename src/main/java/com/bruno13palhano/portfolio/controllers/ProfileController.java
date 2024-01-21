@@ -15,7 +15,7 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @PostMapping(path = "insert")
+    @PostMapping(path = "/insert")
     public ResponseEntity<?> insert(@RequestBody Profile profile) {
         profileService.insert(profile);
 
@@ -29,9 +29,9 @@ public class ProfileController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(path = "profile/{id}")
-    public ResponseEntity<Profile> getById(@PathVariable Integer id) {
-        Profile profile = profileService.getById(id);
+    @GetMapping(path = "/profile")
+    public ResponseEntity<Profile> getById() {
+        Profile profile = profileService.getById(1);
 
         return new ResponseEntity<>(profile, HttpStatus.OK);
     }
