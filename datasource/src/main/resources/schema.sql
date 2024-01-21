@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS projects (
 CREATE TABLE IF NOT EXISTS profile (
     id int NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
+    image_url TEXT,
     description TEXT,
     email VARCHAR(255),
     cellphone_number VARCHAR(55),
