@@ -52,6 +52,7 @@ public class PortfolioSecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/projects/all").permitAll()
                                 .requestMatchers("/projects/project/**").permitAll()
+                                .requestMatchers("/projects/image/**").permitAll()
                                 .requestMatchers("/profiles/profile").permitAll()
                                 .requestMatchers("/profiles/image").permitAll()
                                 .requestMatchers("/**").authenticated()
