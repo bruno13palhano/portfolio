@@ -34,6 +34,7 @@ public class DefaultProjectRepository implements ProjectRepository {
             preparedStatement.setString(2, type);
             preparedStatement.setString(3, model.getDescription());
             preparedStatement.setString(4, imagesUrls);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -66,6 +67,7 @@ public class DefaultProjectRepository implements ProjectRepository {
             preparedStatement.setString(3, model.getDescription());
             preparedStatement.setString(4, imagesUrls);
             preparedStatement.setInt(5, model.getId());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

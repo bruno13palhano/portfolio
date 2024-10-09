@@ -29,6 +29,7 @@ public class DefaultUserRepository implements UserRepository {
             preparedStatement.setString(4, model.getEmail());
             preparedStatement.setString(5, model.getRole());
             preparedStatement.setBoolean(6, model.getEnabled());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,6 +42,7 @@ public class DefaultUserRepository implements UserRepository {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
             preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
